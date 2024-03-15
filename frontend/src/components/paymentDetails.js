@@ -52,12 +52,12 @@ const PaymentDetails = ({ payment }) => {
         >
           delete
         </span>
-        <div>
+        <div className="Details">
         <h3>Update Payment</h3>
         <input type="number" name="amount" value={updatedPayment.amount} onChange={handleChange} />
         <input type="text" name="method" value={updatedPayment.method} onChange={handleChange} />
         <input type="text" name="status" value={updatedPayment.status} onChange={handleChange} />
-        <button onClick={handleUpdate}>Update Payment</button>
+        <button  onClick={handleUpdate}>Update Payment</button>
       </div>
       </div>
     );
