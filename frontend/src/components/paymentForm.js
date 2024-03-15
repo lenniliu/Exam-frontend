@@ -28,6 +28,8 @@ const PaymentForm = () => {
 
           if (!response.ok) {
             setError(json.error);
+          } else {
+            window.location.reload();
           }
           if (response.ok) {
             setAmount('');

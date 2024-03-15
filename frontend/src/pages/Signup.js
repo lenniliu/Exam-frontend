@@ -12,13 +12,17 @@ const Signup = ({setIsAuthenticated}) => {
 
   const { signup, isLoading, error } = useSignup("/api/users/signup");
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
-    signup({ email: email.value, password: password.value });
-    if (!error) console.log("success");
-    setIsAuthenticated(true);
-    
-  };
+    const success = await signup({ email: email.value, password: password.value });
+    if (success) {
+      setIsAuthenticated(true);
+      console.log("success");
+      navigate("/")
+    } else {
+      console.log(error.message)
+    }
+  }
 
   return (
     <>
