@@ -1,9 +1,11 @@
 import { useState } from "react";
 
-const paymentForm = () => {
+const PaymentForm = () => {
     const [amount, setAmount] = useState("");
     const [method, setMethod] = useState("");
     const [status, setStatus] = useState("");
+    const [error, setError] = useState(null)
+    const token = localStorage.getItem("token")
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -63,4 +65,4 @@ const paymentForm = () => {
         );
 };
 
-export default paymentForm;
+export default PaymentForm;

@@ -25,15 +25,15 @@ const Signup = ({setIsAuthenticated}) => {
       <form className="signup" onSubmit={handleFormSubmit}>
         <h3>Sign Up</h3>
         <label>Email address:</label>
-        <input type="email" placeholder="Email (required)" {...email} />
+        <input {...email} />
         <label>Password:</label>
-        <input type="password" placeholder="Password (required)" {...password} />
+        <input {...password} />
         <label>First Name:</label>
-        <input type="firstName" placeholder="First Name" {...firstName} />
+        <input {...firstName} />
         <label>Last Name:</label>
-        <input type="lastName" placeholder="Last Name" {...lastName} />
+        <input {...lastName} />
         <label>Phonenumber:</label>
-        <input type="phonenumber" placeholder="Phonenumber" {...phonenumber} />
+        <input {...phoneNumber} />
         <button>Sign up</button>
       </form>
     </>

@@ -1,23 +1,47 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { useState } from "react";
+import Home from "./pages/Home";
+import Login from "./pages/login";
+import Signup from "./pages/Signup";
+import Navbar from "./components/navbar";
 
 function App() {
+  const [isAuthenticated, setIsAuthenticated] = useState(
+    Boolean(localStorage.getItem("token")) || false
+  );
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <BrowserRouter>
+        <Navbar setIsAuthenticated={setIsAuthenticated} isAuthenticated={isAuthenticated}/>
+        <div className="pages">
+          <Routes>
+            <Route
+              path="/"
+              element={isAuthenticated ? <Home setIsAuthenticated={setIsAuthenticated} isAuthenticated={isAuthenticated}/> : <Navigate to="/login" />}
+            />
+            <Route
+              path="/login"
+              element={
+                isAuthenticated ? (
+                  <Navigate to="/" />
+                ) : (
+                  <Login setIsAuthenticated={setIsAuthenticated} />
+                )
+              }
+            />
+            <Route
+              path="/signup"
+              element={
+                isAuthenticated ? (
+                  <Navigate to="/" />
+                ) : (
+                  <Signup setIsAuthenticated={setIsAuthenticated} />
+                )
+              }
+            />
+          </Routes>
+        </div>
+      </BrowserRouter>
     </div>
   );
 }

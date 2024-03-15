@@ -9,15 +9,18 @@ const Login = ({ setIsAuthenticated }) => {
 
   const { login, isLoading, error } = useLogin("/api/users/login");
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
-    login({ email: email.value, password: password.value });
-    if (!error) {
+    const success = await login({ email: email.value, password: password.value });
+    if (success) {
       setIsAuthenticated(true);
       console.log("success");
+      navigate("/")
+    } else {
+      console.log(error.message)
     }
-  };
-
+  }
+  
   return (
     <>
       <form className="login" onSubmit={handleFormSubmit}>
